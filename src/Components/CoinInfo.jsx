@@ -7,15 +7,20 @@ const CoinInfo = ({image, name, symbol}) => {
 
     useEffect(() => {
         const getCoinPrice = async () => {
-            const response = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD&api_key=` + API_KEY)
+            const response = await fetch(`https://min-api.cryptocompare.com/data/price?fsym=${symbol}&tsyms=USD&api_key=` + API_KEY);
+
+            const json = response.json();
+            setPrice(json)
         }
+
 
         getCoinPrice().catch(console.error);
     }, [symbol])
 
     return (
         <div>
-            <li className="mainList" key={symbol}>
+            {price ? (
+                <li className="mainList" key={symbol}>
                 <img 
                     className="icons"
                     src={`https://www.cryptocompare.com${image}`}
@@ -23,6 +28,7 @@ const CoinInfo = ({image, name, symbol}) => {
                 />
                 {name} <span className="tab"></span> ${price.USD} USD
             </li>
+            ) : null}
         </div>
     );
 
