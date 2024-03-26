@@ -12,7 +12,6 @@ function App() {
     const fetchAllCoinData = async () => {
       const response = await fetch("https://min-api.cryptocompare.com/data/all/coinlist?&api_key=" + API_KEY);
       const json = await response.json()
-      console.log(json)
       setList(json)
     }
 
@@ -23,7 +22,7 @@ function App() {
   const searchItems = searchValue => {
     setSearchInput(searchValue);
     if(searchValue !== "") {
-      const filteredData = Object.keys(list.Data).filter(() => 
+      const filteredData = Object.keys(list.Data).filter((item) => 
         Object.values(item)
           .join("")
           .toLowerCase()
@@ -45,15 +44,27 @@ function App() {
         onChange={(inputString) => searchItems(inputString.target.value)}
       />
       <ul>
-          {list && Object.entries(list.Data).map(([coin]) => 
-            list.Data[coin].PlatformType === "blockchain" ? (
-              <CoinInfo
-                //image={list.Data[coin].ImageUrl}
-                name={list.Data[coin].FullName}
-                symbol={list.Data[coin].Symbol}
-              />
-            ) : null
-          )}
+      {searchInput.length > 0
+        ? filteredResults.map((coin) =>
+            list.Data[coin].PlatformType === "blockchain" ?
+            <CoinInfo
+              image={list.Data[coin].ImageUrl}
+              name={list.Data[coin].FullName}
+              symbol={list.Data[coin].Symbol}
+            />
+            : null
+            )
+        : list && Object.entries(list.Data).map(([coin]) =>
+            list.Data[coin].PlatformType === "blockchain" ?
+            <CoinInfo
+              image={list.Data[coin].ImageUrl}
+              name={list.Data[coin].FullName}
+              symbol={list.Data[coin].Symbol}
+            />
+            : null
+            )
+    
+      }
         </ul>
 
     </div>
