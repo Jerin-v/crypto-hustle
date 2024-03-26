@@ -21,7 +21,13 @@ function App() {
   return (
     <div className='wholePage'>
       <h1>My Crypto List</h1>
-        
+      <ul>
+          {list && Object.entries(list.Data).map(([coin]) => 
+            list.Data[coin].PlatformType === "blockchain" ? (
+              <li key={list.Data[coin].FullName}>{list.Data[coin].FullName}</li>
+            ) : null
+          )}
+        </ul>
 
     </div>
   )
