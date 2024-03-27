@@ -32,3 +32,23 @@ li.mainList {
   background: black;
   color: white;
 }
+
+.tab {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.sideNav {
+  height: 100%;
+  width: 25%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #232323;
+  padding: 15px 10px;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
