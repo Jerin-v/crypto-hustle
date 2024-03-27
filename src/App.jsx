@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import CoinInfo from './Components/CoinInfo';
+import SideNav from './Components/SideNav';
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <div className='wholePage'>
+      <SideNav />
       <h1>My Crypto List</h1>
       <input
         type='text'
