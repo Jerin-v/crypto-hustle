@@ -22,7 +22,19 @@ const CoinDetail = () => {
 
   return (
     <div>
-      <h1>Coin Detail</h1>
+      <h1>{fullDetails.textData[params.symbol].FullName}</h1>
+      <img
+        className="images"
+        src={`https://cryptocompare.com${fullDetails.numbers[params.symbol].USD.ImageUrl}`}
+        alt={`small icon for ${params.symbol} crypto coin`}
+        />
+      <div> {fullDetails.textData[params.symbol].Description} </div>
+      <br></br>
+      <div>
+        This coin was built with the algorithm{" "}
+        {fullDetails.textData[params.symbol].Algorithm}{" "}
+      </div>
+
     </div>
   );
 }
