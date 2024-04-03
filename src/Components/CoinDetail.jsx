@@ -22,7 +22,7 @@ const CoinDetail = () => {
 
   return (
     <div>
-      <h1>{fullDetails && fullDetails.textData[params.symbol].FullName}</h1>
+      <h1>{fullDetails && fullDetails.textData && fullDetails.textData[params.symbol] && fullDetails.textData[params.symbol].FullName}</h1>
       <img
         className="images"
         src={`https://cryptocompare.com${fullDetails && fullDetails.numbers[params.symbol].USD.IMAGEURL}`}
