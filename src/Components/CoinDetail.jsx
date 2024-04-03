@@ -1,5 +1,6 @@
 import React, {Component, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
+import CoinChart from "./CoinChart";
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
 
@@ -34,42 +35,50 @@ const CoinDetail = () => {
         This coin was built with the algorithm{" "}
         {fullDetails && fullDetails.textData[params.symbol].Algorithm}{" "}
       </div>
-    <table>
-        <tbody>
-            <tr>
-                <th>Website</th>
-                <td>{fullDetails && fullDetails.textData && fullDetails.textData[params.symbol] ? fullDetails.textData[params.symbol].AssetWebsiteUrl : ''}</td>
-            </tr>
-            <tr>
-                <th>Monetary Symbol</th>
-                <td>{params.symbol}</td>
-            </tr>
-            <tr>
-                <th>Market</th>
-                <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.MARKET : ''}</td>
-            </tr>
-            <tr>
-                <th>Last Transaction</th>
-                <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.LASTTRADEID : ''}</td>
-            </tr>
-            <tr>
-                <th>Last Transaction Value</th>
-                <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.LASTVOLUME : ''}</td>
-            </tr>
-            <tr>
-                <th>Volume</th>
-                <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.VOLUME24HOUR : ''}</td>
-            </tr>
-            <tr>
-                <th>Today's Open Price</th>
-                <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.OPEN24HOUR : ''}</td>
-            </tr>
-            <tr>
-                <th>Market Cap</th>
-                <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.MKTCAP : ''}</td>
-            </tr>
-        </tbody>
-    </table>
+      <div style={{display: "flex", justifyContent: "center", marginTop: "20px"}}>
+        <table>
+            <tbody>
+                <tr>
+                    <th>Website</th>
+                    <td>{fullDetails && fullDetails.textData && fullDetails.textData[params.symbol] ? fullDetails.textData[params.symbol].AssetWebsiteUrl : ''}</td>
+                </tr>
+                <tr>
+                    <th>Monetary Symbol</th>
+                    <td>{params.symbol}</td>
+                </tr>
+                <tr>
+                    <th>Market</th>
+                    <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.MARKET : ''}</td>
+                </tr>
+                <tr>
+                    <th>Last Transaction</th>
+                    <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.LASTTRADEID : ''}</td>
+                </tr>
+                <tr>
+                    <th>Last Transaction Value</th>
+                    <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.LASTVOLUME : ''}</td>
+                </tr>
+                <tr>
+                    <th>Volume</th>
+                    <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.VOLUME24HOUR : ''}</td>
+                </tr>
+                <tr>
+                    <th>Today's Open Price</th>
+                    <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.OPEN24HOUR : ''}</td>
+                </tr>
+                <tr>
+                    <th>Market Cap</th>
+                    <td>{fullDetails && fullDetails.numbers && fullDetails.numbers[params.symbol] ? fullDetails.numbers[params.symbol].USD.MKTCAP : ''}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+    <div style={{ width: '100%', maxWidth: '600px' }}>
+        <CoinChart
+            symbol={params.symbol}
+            market={fullDetails && fullDetails.numbers[params.symbol].USD.MARKET}
+        />
+    </div>
 
     </div>
   );
