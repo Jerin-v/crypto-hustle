@@ -48,12 +48,12 @@ const CoinChart = ({ symbol, market }) => {
     return (
         <div>
             {histData ? (
-                <div>
+                <div style={{display: "flex", flexDirection: "column", flexWrap: "wrap"}}>
                     <br></br>
                     <h2>30-Day Price Data for {symbol}</h2>
 
                     <LineChart
-                        width={1300}
+                        width={1100}
                         height={400}
                         data={cleanData(histData)}
                         margin={{
